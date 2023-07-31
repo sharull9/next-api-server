@@ -16,7 +16,7 @@ export async function sendMail(
 
   let mailOptions = {
     from: process.env.NODEMAILER_EMAIL,
-    to: toMail != undefined ? toMail : process.env.NODEMAILER_EMAIL,
+    to: toMail,
     subject: `${name} has sent you an email (${email})`,
     text: message,
   };
@@ -26,7 +26,6 @@ export async function sendMail(
       //@ts-ignore
       throw new Error(error);
     } else {
-      console.log("Email Sent");
       return true;
     }
   });
