@@ -3,10 +3,6 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   const res = await request.json();
-  if (res.toMail) {
-    sendMail(res.name, res.email, res.message, res.toMail);
-  } else {
-    sendMail(res.name, res.email, res.message);
-  }
+  sendMail(res.name, res.email, res.message, res.toMail || undefined);
   return NextResponse.json({ res });
 }
