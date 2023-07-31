@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer";
+import { createTransport } from "nodemailer";
 
 export async function sendMail(
   name: string,
@@ -6,7 +6,7 @@ export async function sendMail(
   message: string,
   toMail?: string
 ) {
-  let transporter = nodemailer.createTransport({
+  let transporter = createTransport({
     service: "gmail",
     auth: {
       user: process.env.NODEMAILER_EMAIL,
@@ -16,7 +16,7 @@ export async function sendMail(
 
   let mailOptions = {
     from: process.env.NODEMAILER_EMAIL,
-    to: toMail || process.env.NODEMAILER_EMAIL,
+    to: toMail ? toMail : process.env.NODEMAILER_EMAIL,
     subject: `${name} has sent you an email (${email})`,
     text: message,
   };
