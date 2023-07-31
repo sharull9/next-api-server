@@ -1,7 +1,7 @@
-import { createTransport } from "nodemailer";
+import nodemailer from "nodemailer";
 
 export async function sendMail(name: string, email: string, message: string) {
-  let transporter = createTransport({
+  let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
       user: process.env.NODEMAILER_EMAIL,
