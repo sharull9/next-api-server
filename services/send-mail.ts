@@ -1,11 +1,6 @@
 import { createTransport } from "nodemailer";
 
-export async function sendMail(
-  name: string,
-  email: string,
-  message: string,
-  toMail?: string
-) {
+export async function sendMail(name: string, email: string, message: string) {
   let transporter = createTransport({
     service: "gmail",
     auth: {
