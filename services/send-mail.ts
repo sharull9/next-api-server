@@ -16,7 +16,7 @@ export async function sendMail(
 
   let mailOptions = {
     from: `"Sharull API" <${process.env.NODEMAILER_EMAIL}>`,
-    to: `thesharull@gmail.com`,
+    to: process.env.NODEMAILER_EMAIL,
     subject: `${name} has sent you an email (${email})`,
     text: message,
   };
