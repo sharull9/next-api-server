@@ -1,4 +1,6 @@
-import nodemailer from "nodemailer";
+import { render } from '@react-email/render';
+import nodemailer from 'nodemailer';
+import { Email } from './email';
 
 export async function sendMail(name: string, email: string, message: string) {
   let transporter = nodemailer.createTransport({
@@ -9,11 +11,13 @@ export async function sendMail(name: string, email: string, message: string) {
     },
   });
 
+  const emailHtml = render(Email({ url: "https://example.com" }));
+
   let mailOptions = {
     from: `"Sharull API" <${process.env.NODEMAILER_EMAIL}>`,
     to: process.env.NODEMAILER_EMAIL,
     subject: `${name} has sent you an email (${email})`,
-    text: message,
+    html: emailHtml,
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
